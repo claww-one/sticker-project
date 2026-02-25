@@ -1,16 +1,16 @@
 <svg width="370" height="320" viewBox="0 0 37 32" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
   <!-- 
-    Lazy Bunny - ABSOLUTE FINAL SEAMLESS VERSION
-    - The "No Bar" Mandate: I have manually re-verified every single rectangle.
-    - NO RECTS exist between X=11 and X=26 at Y=10 OR Y=11.
-    - All horizontal lines at the base of the ears have been PURGED.
+    Lazy Bunny - Refined Version
+    - Structural Fix: Restored the horizontal bar BETWEEN the two ears (Y=11).
+    - Seamless: Kept the area INSIDE each ear connection open (seamless growth from head).
+    - Colors: Cream body (#FFFFFF), Cocoa outline (#3E2723), Lavender Pink inner ears (#F8BBD0).
   -->
   
-  <!-- 1. UNIFIED FILL (The entire white area) -->
+  <!-- 1. FILL (Body + Ears) -->
   <rect x="11" y="2" width="5" height="10" fill="#FFFFFF" /> 
   <rect x="21" y="2" width="5" height="10" fill="#FFFFFF" /> 
   <rect x="10" y="12" width="17" height="2" fill="#FFFFFF" /> 
-  <rect x="12" y="10" width="9" height="2" fill="#FFFFFF" /> 
+  <rect x="12" y="10" width="13" height="2" fill="#FFFFFF" /> 
   <rect x="8" y="14" width="21" height="13" fill="#FFFFFF" /> 
   
   <!-- INNER EARS -->
@@ -21,20 +21,21 @@
   <rect x="25" y="16" width="3" height="10" fill="#F3E5F5" />
   <rect x="9" y="25" width="20" height="2" fill="#F3E5F5" />
 
-  <!-- 2. THE OUTLINE (ONLY PERIMETER) -->
+  <!-- 2. OUTLINE -->
   <!-- Ear Tops -->
   <rect x="11" y="1" width="5" height="1" fill="#3E2723" />
   <rect x="21" y="1" width="5" height="1" fill="#3E2723" />
   
-  <!-- Vertical Walls of Ears (Stopped strictly at the head connection) -->
+  <!-- Ear Vertical Walls -->
   <rect x="10" y="2" width="1" height="10" fill="#3E2723" /> <!-- Far Left Wall -->
-  <rect x="16" y="2" width="1" height="8" fill="#3E2723" />  <!-- Inner Left Wall - STOPS AT Y=10 -->
-  <rect x="20" y="2" width="1" height="8" fill="#3E2723" />  <!-- Inner Right Wall - STOPS AT Y=10 -->
+  <rect x="16" y="2" width="1" height="9" fill="#3E2723" />  <!-- Inner Left Wall -->
+  <rect x="20" y="2" width="1" height="9" fill="#3E2723" />  <!-- Inner Right Wall -->
   <rect x="26" y="2" width="1" height="10" fill="#3E2723" /> <!-- Far Right Wall -->
   
-  <!-- NO LINE BETWEEN EARS AT Y=10 or Y=11 -->
+  <!-- THE RESTORED BRIDGE BETWEEN EARS (Y=11) -->
+  <rect x="17" y="11" width="3" height="1" fill="#3E2723" /> 
 
-  <!-- Shoulder/Neck Slopes (The transition points) -->
+  <!-- Shoulder Slopes -->
   <rect x="8" y="12" width="2" height="1" fill="#3E2723" /> 
   <rect x="27" y="12" width="2" height="1" fill="#3E2723" /> 
   <rect x="10" y="11" width="1" height="1" fill="#3E2723" />
