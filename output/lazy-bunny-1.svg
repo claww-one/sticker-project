@@ -1,9 +1,9 @@
 <svg width="370" height="320" viewBox="0 0 37 32" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
   <!-- 
-    Lazy Bunny - Kawaii "Bunny with Inner Ears" Edition
+    Lazy Bunny - Kawaii "Bunny with Inner Ears" Edition V2
     - Structure: Symmetrical, Seamless ears-to-head transition.
-    - Feature: Added inner ear segments with soft pink coloring.
-    - Colors: Cream body (#FFFFFF), Cocoa outline (#3E2723), Pink blush & inner ears.
+    - Updated: Inner ear segments matching the reference shape.
+    - Colors: Cream body (#FFFFFF), Cocoa outline (#3E2723), Soft Pink (#FFD1DC).
   -->
   
   <!-- 1. UNIFIED FILL -->
@@ -14,15 +14,15 @@
   <rect x="10" y="12" width="17" height="2" fill="#FFFFFF" /> <!-- Shoulder Fill -->
   <rect x="12" y="11" width="13" height="1" fill="#FFFFFF" /> <!-- Head Top Fill -->
   
-  <!-- INNER EARS (Soft Pastel Pink #FFD1DC) -->
-  <rect x="12" y="4" width="3" height="6" fill="#FFD1DC" />
-  <rect x="22" y="4" width="3" height="6" fill="#FFD1DC" />
+  <!-- 2. INNER EARS (Updated per reference) -->
+  <rect x="12" y="3" width="3" height="7" fill="#FFD1DC" />
+  <rect x="22" y="3" width="3" height="7" fill="#FFD1DC" />
   
   <!-- Shading (Bottom & Right) -->
   <rect x="26" y="16" width="3" height="10" fill="#F0E5F0" />
   <rect x="9" y="25" width="20" height="2" fill="#F0E5F0" />
 
-  <!-- 2. CLEAN OUTER OUTLINE (No internal base lines) -->
+  <!-- 3. CLEAN OUTER OUTLINE (No internal base lines) -->
   <!-- Ear Tops -->
   <rect x="11" y="1" width="5" height="1" fill="#3E2723" />
   <rect x="21" y="1" width="5" height="1" fill="#3E2723" />
@@ -49,7 +49,7 @@
   <rect x="28" y="13" width="1" height="14" fill="#3E2723" />
   <rect x="8" y="27" width="20" height="1" fill="#3E2723" />
 
-  <!-- 3. KAWAII FACE -->
+  <!-- 4. KAWAII FACE -->
   <rect x="13" y="18" width="1" height="2" fill="#3E2723" />
   <rect x="22" y="18" width="1" height="2" fill="#3E2723" />
   <rect x="18" y="22" width="1" height="1" fill="#3E2723" />
