@@ -1,48 +1,61 @@
 import os
 
 def generate_ppm():
-    # Basic PPM (P3) generator to create a 370x320 image
-    # We'll generate a 37x32 "pixel" grid and scale it up or just use raw pixels.
-    # To keep it simple and ensure no dependencies, we create a simple pattern.
-    
+    # LINE Sticker standard size: 370 x 320
     width, height = 370, 320
     header = f"P3\n{width} {height}\n255\n"
     
-    pixels = []
-    # Fill with "transparent" replacement (white for PPM, as PPM has no alpha)
-    # We will use this to verify the composition first.
-    bg = "255 255 255" 
-    bunny = "255 255 255"
-    outline = "211 211 211"
+    # 37x32 grid (10px per cell)
+    grid_w, grid_h = 37, 32
+    
+    # Colors
+    bg = "255 255 255"      # White background (for preview)
+    bunny = "255 255 255"   # White fur
+    outline = "0 0 0"       # Black outline (Bold)
     eye = "0 0 0"
     nose = "255 192 203"
+    ear_inner = "255 235 235"
 
-    # 37x32 grid logic
-    grid_w, grid_h = 37, 32
     data = [[bg for _ in range(grid_w)] for _ in range(grid_h)]
     
-    off_x, off_y = 5, 12
+    off_x, off_y = 6, 10
     
-    # Draw Bunny Body
-    for x in range(2, 22):
-        for y in range(4, 12):
+    # 1. Draw Body Fill
+    for x in range(3, 23):
+        for y in range(5, 13):
+            data[off_y + y][off_x + x] = bunny
+
+    # 2. Draw Ears Fill (Droopy)
+    for x in range(0, 5):
+        for y in range(5, 11):
             data[off_y + y][off_x + x] = bunny
             
-    # Ears
-    for x in range(0, 4):
-        for y in range(4, 10):
-            data[off_y + y][off_x + x] = bunny
-
-    # Eyes
-    data[off_y + 7][off_x + 14] = eye
-    data[off_y + 7][off_x + 15] = eye
-    data[off_y + 7][off_x + 18] = eye
-    data[off_y + 7][off_x + 19] = eye
+    # 3. Draw BOLD Black Outlines
+    # Body Horizontal
+    for x in range(3, 23):
+        data[off_y + 4][off_x + x] = outline
+        data[off_y + 13][off_x + x] = outline
+    # Body Vertical
+    for y in range(5, 13):
+        data[off_y + y][off_x + 23] = outline
     
+    # Ears Outlines
+    for x in range(0, 4):
+        data[off_y + 4][off_x + x] = outline
+        data[off_y + 11][off_x + x] = outline
+    for y in range(5, 11):
+        data[off_y + y][off_x - 1] = outline
+        
     # Nose
-    data[off_y + 9][off_x + 17] = nose
+    data[off_y + 10][off_x + 18] = nose
+    
+    # Eyes (Lazy/Sleeping)
+    data[off_y + 8][off_x + 15] = eye
+    data[off_y + 8][off_x + 16] = eye
+    data[off_y + 8][off_x + 19] = eye
+    data[off_y + 8][off_x + 20] = eye
 
-    # Scaling up to 370x320
+    # 4. Scale up to 370x320
     with open('sticker-project/output/lazy-bunny-1.ppm', 'w') as f:
         f.write(header)
         for y in range(height):
@@ -55,4 +68,4 @@ def generate_ppm():
 
 if __name__ == "__main__":
     generate_ppm()
-    print("PPM generated.")
+    print("Sticker with BOLD OUTLINE generated.")
