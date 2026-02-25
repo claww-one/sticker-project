@@ -9,62 +9,68 @@ def generate_ppm():
     white = "255 255 255"
     black = "0 0 0"
     pink = "255 180 200"
-    shadow = "220 220 220"
 
     data = [[bg for _ in range(grid_w)] for _ in range(grid_h)]
     
-    cx, cy = 92, 100 # 下移一點給耳朵空間
+    cx, cy = 92, 90
 
-    def draw_rect(x, y, w, h, color):
-        for i in range(x, x+w):
-            for j in range(y, y+h):
-                if 0 <= i < grid_w and 0 <= j < grid_h:
-                    data[j][i] = color
+    def draw_pixel(x, y, color):
+        if 0 <= x < grid_w and 0 <= y < grid_h:
+            data[y][x] = color
 
-    def draw_outline(x, y, w, h):
-        for i in range(x, x+w):
-            if 0 <= i < grid_w:
-                if 0 <= y < grid_h: data[y][i] = black
-                if 0 <= y+h-1 < grid_h: data[y+h-1][i] = black
-        for j in range(y, y+h):
-            if 0 <= j < grid_h:
-                if 0 <= x < grid_w: data[j][x] = black
-                if 0 <= x+w-1 < grid_w: data[j][x+w-1] = black
+    def draw_fill_rect(x1, y1, x2, y2, color):
+        for i in range(x1, x2 + 1):
+            for j in range(y1, y2 + 1):
+                draw_pixel(i, j, color)
 
-    # 1. 橢圓形身體 (攤平感)
-    draw_rect(cx-50, cy, 100, 30, white)
-    draw_outline(cx-50, cy, 100, 30)
-    
-    # 2. 圓圓的頭 (連在身體右側)
-    draw_rect(cx+30, cy-15, 35, 35, white)
-    draw_outline(cx+30, cy-15, 35, 35)
-    
-    # 3. 兔子的核心特徵：長耳朵 (一對，垂下來)
-    # 耳朵1 (在頭後方)
-    draw_rect(cx+45, cy+5, 10, 40, white)
-    draw_outline(cx+45, cy+5, 10, 40)
-    # 耳朵2 (在頭前方，遮住一點臉)
-    draw_rect(cx+35, cy+10, 10, 45, white)
-    draw_outline(cx+35, cy+10, 10, 45)
+    # 1. 身體 (橢圓形處理)
+    draw_fill_rect(cx-50, cy+5, cx+30, cy+35, white) # 身體主體
+    # 身體描邊 (切角模擬圓弧)
+    for x in range(cx-48, cx+28): 
+        draw_pixel(x, cy+4, black)
+        draw_pixel(x, cy+36, black)
+    for y in range(cy+6, cy+34):
+        draw_pixel(cx-51, y, black)
+        draw_pixel(cx+31, y, black)
 
-    # 4. 懶散的五官
-    # 瞇瞇眼 (一條線)
-    draw_rect(cx+50, cy+5, 8, 1, black)
-    # 小鼻子 (粉紅色 V 字感)
-    data[cy+12][cx+58] = pink
-    data[cy+13][cx+58] = pink
-    
-    # 5. 縮起來的小手和小腳 (兔子的特徵)
-    # 前肢
-    draw_rect(cx+10, cy+25, 10, 8, white)
-    draw_outline(cx+10, cy+25, 10, 8)
-    # 後肢 (縮在屁股後面)
-    draw_rect(cx-55, cy+20, 12, 10, white)
-    draw_outline(cx-55, cy+20, 12, 10)
-    
-    # 6. 圓尾巴 (重要特徵)
-    draw_rect(cx-62, cy+5, 12, 12, white)
-    draw_outline(cx-62, cy+5, 12, 12)
+    # 2. 圓潤的腦袋 (重點優化：切角技術)
+    # 腦袋填充
+    draw_fill_rect(cx+32, cy-15, cx+68, cy+21, white)
+    # 腦袋描邊 (手動切掉四個角讓它變圓)
+    # 頂邊與底邊
+    for x in range(cx+36, cx+64):
+        draw_pixel(x, cy-16, black) # 頂
+        draw_pixel(x, cy+22, black) # 底
+    # 左右邊
+    for y in range(cy-11, cy+17):
+        draw_pixel(cx+31, y, black) # 左
+        draw_pixel(cx+69, y, black) # 右
+    # 斜角 (切角)
+    corner_pts = [
+        (cx+35, cy-15), (cx+34, cy-14), (cx+33, cy-13), (cx+32, cy-12), # 左上
+        (cx+65, cy-15), (cx+66, cy-14), (cx+67, cy-13), (cx+68, cy-12), # 右上
+        (cx+35, cy+21), (cx+34, cy+20), (cx+33, cy+19), (cx+32, cy+18), # 左下
+        (cx+65, cy+21), (cx+66, cy+20), (cx+67, cy+19), (cx+68, cy+18)  # 右下
+    ]
+    for px, py in corner_pts: draw_pixel(px, py, black)
+
+    # 3. 軟趴趴的垂耳 (增加一點弧度)
+    # 耳朵 1
+    draw_fill_rect(cx+48, cy+15, cx+58, cy+55, white)
+    for y in range(cy+16, cy+54):
+        draw_pixel(cx+47, y, black)
+        draw_pixel(cx+59, y, black)
+    for x in range(cx+48, cx+59): draw_pixel(x, cy+55, black)
+
+    # 4. 五官 (微調位置)
+    draw_pixel(cx+52, cy+3, black); draw_pixel(cx+53, cy+3, black) # 左眼
+    draw_pixel(cx+62, cy+3, black); draw_pixel(cx+63, cy+3, black) # 右眼
+    draw_pixel(cx+58, cy+9, pink) # 小鼻子
+
+    # 5. 圓尾巴 (切角圓化)
+    draw_fill_rect(cx-58, cy+15, cx-48, cy+25, white)
+    for x in range(cx-56, cx-50): draw_pixel(x, cy+14, black); draw_pixel(x, cy+26, black)
+    for y in range(cy+16, cy+24): draw_pixel(cx-59, y, black); draw_pixel(cx-47, y, black)
 
     # 輸出 PPM
     with open('sticker-project/output/lazy-bunny-1.ppm', 'w') as f:
@@ -79,4 +85,4 @@ def generate_ppm():
 
 if __name__ == "__main__":
     generate_ppm()
-    print("Real-look Lazy Bunny generated.")
+    print("Rounded Head Bunny generated.")
