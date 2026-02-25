@@ -9,12 +9,11 @@ def generate_ppm():
     white = "255 255 255"
     black = "0 0 0"
     pink = "255 180 200"
-    shadow = "240 240 240"
-
+    
     data = [[bg for _ in range(grid_w)] for _ in range(grid_h)]
     
-    # 中心點下移，把空間讓給向上的耳朵
-    cx, cy = 92, 110 
+    # 重新設定中心點
+    cx, cy = 92, 90 
 
     def draw_pixel(x, y, color):
         if 0 <= x < grid_w and 0 <= y < grid_h:
@@ -25,41 +24,42 @@ def generate_ppm():
             for j in range(y1, y2 + 1):
                 draw_pixel(i, j, color)
 
-    # 1. 兔子的靈魂：一對長長的立耳 (向上且稍微撇開，這才像兔子)
+    # 1. 兔子的立耳 (放在頭頂上方，這才像兔子)
     # 左耳
-    draw_fill(cx+35, cy-60, cx+45, cy-15, white)
-    for y in range(cy-59, cy-15): draw_pixel(cx+34, y, black); draw_pixel(cx+46, y, black)
-    for x in range(cx+35, cx+46): draw_pixel(x, cy-60, black)
+    draw_fill(cx-12, cy-45, cx-2, cy-15, white)
+    for y in range(cy-45, cy-14): draw_pixel(cx-13, y, black); draw_pixel(cx-1, y, black)
+    for x in range(cx-12, cx-1): draw_pixel(x, cy-46, black)
     # 右耳
-    draw_fill(cx+55, cy-50, cx+65, cy-15, white)
-    for y in range(cy-49, cy-15): draw_pixel(cx+54, y, black); draw_pixel(cx+66, y, black)
-    for x in range(cx+55, cx+66): draw_pixel(x, cy-50, black)
+    draw_fill(cx+2, cy-45, cx+12, cy-15, white)
+    for y in range(cy-45, cy-14): draw_pixel(cx+1, y, black); draw_pixel(cx+13, y, black)
+    for x in range(cx+2, cx+13): draw_pixel(x, cy-46, black)
 
-    # 2. 圓圓的小臉 (連接耳朵下方)
-    draw_fill(cx+30, cy-15, cx+70, cy+25, white)
-    # 臉部圓潤化描邊
-    for x in range(cx+35, cx+66): draw_pixel(x, cy-16, black); draw_pixel(x, cy+26, black)
-    for y in range(cy-10, cy+21): draw_pixel(cx+29, y, black); draw_pixel(cx+71, y, black)
-    # 切角
-    draw_pixel(cx+30, cy-13, black); draw_pixel(cx+31, cy-14, black); draw_pixel(cx+32, cy-15, black)
-    draw_pixel(cx+68, cy-15, black); draw_pixel(cx+69, cy-14, black); draw_pixel(cx+70, cy-13, black)
+    # 2. 圓圓的腦袋 (放在耳朵下方，不再是長方形)
+    # 填充一個接近圓形的區域
+    draw_fill(cx-18, cy-14, cx+18, cy+20, white)
+    # 腦袋描邊
+    for x in range(cx-12, cx+13): draw_pixel(x, cy-15, black); draw_pixel(x, cy+21, black)
+    for y in range(cy-9, cy+16): draw_pixel(cx-19, y, black); draw_pixel(cx+19, y, black)
+    # 切角讓頭變圓
+    draw_pixel(cx-18, cy-13, black); draw_pixel(cx-17, cy-14, black); draw_pixel(cx-16, cy-15, black)
+    draw_pixel(cx+18, cy-13, black); draw_pixel(cx+17, cy-14, black); draw_pixel(cx+16, cy-15, black)
 
-    # 3. 縮起來的身體 (側躺感，不能太長像象鼻)
-    draw_fill(cx-30, cy+5, cx+35, cy+30, white)
-    for x in range(cx-25, cx+35): draw_pixel(x, cy+4, black); draw_pixel(x, cy+31, black)
-    for y in range(cy+10, cy+25): draw_pixel(cx-31, y, black)
-
-    # 4. 懶散五官 (微調位置)
-    # 瞇瞇眼 (一條線)
-    draw_pixel(cx+40, cy+5, black); draw_pixel(cx+41, cy+5, black); draw_pixel(cx+42, cy+5, black)
-    draw_pixel(cx+58, cy+5, black); draw_pixel(cx+59, cy+5, black); draw_pixel(cx+60, cy+5, black)
-    # 鼻子
-    draw_pixel(cx+50, cy+12, pink)
+    # 3. 懶散的身體 (側躺在頭的左側，形成 L 型姿態)
+    draw_fill(cx-60, cy+5, cx-19, cy+20, white)
+    for x in range(cx-55, cx-19): draw_pixel(x, cy+4, black); draw_pixel(x, cy+21, black)
+    for y in range(cy+9, cy+16): draw_pixel(cx-61, y, black)
+    
+    # 4. 五官 (放在圓臉的正中心)
+    # 瞇瞇眼
+    draw_pixel(cx-8, cy+2, black); draw_pixel(cx-7, cy+2, black)
+    draw_pixel(cx+7, cy+2, black); draw_pixel(cx+8, cy+2, black)
+    # 小鼻子 (要在眼睛下方，不能長在臉頰)
+    draw_pixel(cx, cy+8, pink)
 
     # 5. 圓尾巴
-    draw_fill(cx-42, cy+10, cx-32, cy+20, white)
-    for x in range(cx-40, cx-34): draw_pixel(x, cy+9, black); draw_pixel(x, cy+21, black)
-    for y in range(cy+12, cy+18): draw_pixel(cx-43, y, black)
+    draw_fill(cx-70, cy+8, cx-61, cy+17, white)
+    for x in range(cx-68, cx-63): draw_pixel(x, cy+7, black); draw_pixel(x, cy+18, black)
+    for y in range(cy+10, cy+15): draw_pixel(cx-71, y, black)
 
     # 輸出 PPM
     with open('sticker-project/output/lazy-bunny-1.ppm', 'w') as f:
@@ -74,4 +74,4 @@ def generate_ppm():
 
 if __name__ == "__main__":
     generate_ppm()
-    print("Proper Bunny (Not Elephant) generated.")
+    print("Real Bunny Redux generated.")
