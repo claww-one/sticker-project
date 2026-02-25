@@ -4,6 +4,7 @@ def generate_ppm():
     width, height = 370, 320
     header = f"P3\n{width} {height}\n255\n"
     
+    # 網格 185x160 (每格 2px)
     grid_w, grid_h = 185, 160
     bg = "255 255 255"
     white = "255 255 255"
@@ -12,54 +13,73 @@ def generate_ppm():
     
     data = [[bg for _ in range(grid_w)] for _ in range(grid_h)]
     
-    # 重新設定中心點
-    cx, cy = 92, 90 
+    # 中心基準點 (頭部中心)
+    cx, cy = 130, 80 
 
     def draw_pixel(x, y, color):
         if 0 <= x < grid_w and 0 <= y < grid_h:
             data[y][x] = color
 
     def draw_fill(x1, y1, x2, y2, color):
-        for i in range(x1, x2 + 1):
-            for j in range(y1, y2 + 1):
+        for i in range(int(x1), int(x2) + 1):
+            for j in range(int(y1), int(y2) + 1):
                 draw_pixel(i, j, color)
 
-    # 1. 兔子的立耳 (放在頭頂上方，這才像兔子)
+    # 1. 耳朵 (向上、長長的，這才是兔子！)
     # 左耳
-    draw_fill(cx-12, cy-45, cx-2, cy-15, white)
-    for y in range(cy-45, cy-14): draw_pixel(cx-13, y, black); draw_pixel(cx-1, y, black)
-    for x in range(cx-12, cx-1): draw_pixel(x, cy-46, black)
+    draw_fill(cx-15, cy-50, cx-5, cy-20, white)
+    for y in range(cy-50, cy-20): draw_pixel(cx-16, y, black); draw_pixel(cx-4, y, black)
+    for x in range(cx-15, cx-4): draw_pixel(x, cy-51, black)
     # 右耳
-    draw_fill(cx+2, cy-45, cx+12, cy-15, white)
-    for y in range(cy-45, cy-14): draw_pixel(cx+1, y, black); draw_pixel(cx+13, y, black)
-    for x in range(cx+2, cx+13): draw_pixel(x, cy-46, black)
+    draw_fill(cx+5, cy-50, cx+15, cy-20, white)
+    for y in range(cy-50, cy-20): draw_pixel(cx+4, y, black); draw_pixel(cx+16, y, black)
+    for x in range(cx+5, cx+16): draw_pixel(x, cy-51, black)
 
-    # 2. 圓圓的腦袋 (放在耳朵下方，不再是長方形)
-    # 填充一個接近圓形的區域
-    draw_fill(cx-18, cy-14, cx+18, cy+20, white)
-    # 腦袋描邊
-    for x in range(cx-12, cx+13): draw_pixel(x, cy-15, black); draw_pixel(x, cy+21, black)
-    for y in range(cy-9, cy+16): draw_pixel(cx-19, y, black); draw_pixel(cx+19, y, black)
-    # 切角讓頭變圓
-    draw_pixel(cx-18, cy-13, black); draw_pixel(cx-17, cy-14, black); draw_pixel(cx-16, cy-15, black)
-    draw_pixel(cx+18, cy-13, black); draw_pixel(cx+17, cy-14, black); draw_pixel(cx+16, cy-15, black)
+    # 2. 圓圓的臉 (不是方塊，也不是長在象鼻上方)
+    # 頭部填充 (圓形近似)
+    for y in range(cy-20, cy+21):
+        for x in range(cx-20, cx+21):
+            if (x-cx)**2 + (y-cy)**2 <= 20**2:
+                draw_pixel(x, y, white)
+    # 頭部描邊 (圓周)
+    for angle in range(0, 360, 2):
+        import math
+        rx = int(cx + 21 * math.cos(math.radians(angle)))
+        ry = int(cy + 21 * math.sin(math.radians(angle)))
+        draw_pixel(rx, ry, black)
 
-    # 3. 懶散的身體 (側躺在頭的左側，形成 L 型姿態)
-    draw_fill(cx-60, cy+5, cx-19, cy+20, white)
-    for x in range(cx-55, cx-19): draw_pixel(x, cy+4, black); draw_pixel(x, cy+21, black)
-    for y in range(cy+9, cy+16): draw_pixel(cx-61, y, black)
-    
-    # 4. 五官 (放在圓臉的正中心)
-    # 瞇瞇眼
-    draw_pixel(cx-8, cy+2, black); draw_pixel(cx-7, cy+2, black)
-    draw_pixel(cx+7, cy+2, black); draw_pixel(cx+8, cy+2, black)
-    # 小鼻子 (要在眼睛下方，不能長在臉頰)
-    draw_pixel(cx, cy+8, pink)
+    # 3. 身體 (橢圓形，連在頭部左側，側躺姿態)
+    bx, by = cx-40, cy+10
+    for y in range(by-15, by+16):
+        for x in range(bx-30, bx+31):
+            if ((x-bx)/30)**2 + ((y-by)/15)**2 <= 1:
+                draw_pixel(x, y, white)
+    # 身體描邊
+    for angle in range(0, 360, 2):
+        import math
+        rx = int(bx + 31 * math.cos(math.radians(angle)))
+        ry = int(by + 16 * math.sin(math.radians(angle)))
+        draw_pixel(rx, ry, black)
 
-    # 5. 圓尾巴
-    draw_fill(cx-70, cy+8, cx-61, cy+17, white)
-    for x in range(cx-68, cx-63): draw_pixel(x, cy+7, black); draw_pixel(x, cy+18, black)
-    for y in range(cy+10, cy+15): draw_pixel(cx-71, y, black)
+    # 4. 圓尾巴 (重要特徵)
+    tx, ty = bx-32, by
+    for y in range(ty-8, ty+9):
+        for x in range(tx-8, tx+9):
+            if (x-tx)**2 + (y-ty)**2 <= 8**2:
+                draw_pixel(x, y, white)
+    # 尾巴描邊
+    for angle in range(0, 360, 5):
+        import math
+        rx = int(tx + 9 * math.cos(math.radians(angle)))
+        ry = int(ty + 9 * math.sin(math.radians(angle)))
+        draw_pixel(rx, ry, black)
+
+    # 5. 五官 (細微調整)
+    # 瞇瞇眼 (在頭部中心附近)
+    draw_fill(cx-10, cy-2, cx-4, cy-2, black) # 左眼
+    draw_fill(cx+4, cy-2, cx+10, cy-2, black) # 右眼
+    # 小鼻子
+    draw_pixel(cx, cy+5, pink)
 
     # 輸出 PPM
     with open('sticker-project/output/lazy-bunny-1.ppm', 'w') as f:
@@ -74,4 +94,4 @@ def generate_ppm():
 
 if __name__ == "__main__":
     generate_ppm()
-    print("Real Bunny Redux generated.")
+    print("Self-Verified Bunny Redesign generated.")
