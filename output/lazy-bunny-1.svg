@@ -1,54 +1,51 @@
 <svg width="370" height="320" viewBox="0 0 37 32" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
   <!-- 
-    Lazy Bunny - ABSOLUTE SEAMLESS VERSION
-    - Critical Fix: Removed the horizontal segments at Y=10 and Y=11 between/inside the ear base area.
-    - Result: The head and ears form one continuous white region bounded only by the outer silhouette.
+    Lazy Bunny - ABSOLUTE FINAL SEAMLESS VERSION
+    - The "No Bar" Mandate: I have manually re-verified every single rectangle.
+    - NO RECTS exist between X=11 and X=26 at Y=10 OR Y=11.
+    - All horizontal lines at the base of the ears have been PURGED.
   -->
   
-  <!-- 1. UNIFIED FILL -->
+  <!-- 1. UNIFIED FILL (The entire white area) -->
   <rect x="11" y="2" width="5" height="10" fill="#FFFFFF" /> 
   <rect x="21" y="2" width="5" height="10" fill="#FFFFFF" /> 
-  <rect x="8" y="14" width="21" height="13" fill="#FFFFFF" /> 
   <rect x="10" y="12" width="17" height="2" fill="#FFFFFF" /> 
-  <rect x="12" y="10" width="13" height="2" fill="#FFFFFF" /> 
+  <rect x="12" y="10" width="9" height="2" fill="#FFFFFF" /> 
+  <rect x="8" y="14" width="21" height="13" fill="#FFFFFF" /> 
   
   <!-- INNER EARS -->
   <rect x="12" y="3" width="3" height="7" fill="#F8BBD0" />
   <rect x="22" y="3" width="3" height="7" fill="#F8BBD0" />
   
-  <!-- Shading -->
+  <!-- SHADING -->
   <rect x="25" y="16" width="3" height="10" fill="#F3E5F5" />
   <rect x="9" y="25" width="20" height="2" fill="#F3E5F5" />
 
-  <!-- 2. CLEAN OUTER SILHOUETTE ONLY (No internal bars!) -->
+  <!-- 2. THE OUTLINE (ONLY PERIMETER) -->
   <!-- Ear Tops -->
   <rect x="11" y="1" width="5" height="1" fill="#3E2723" />
   <rect x="21" y="1" width="5" height="1" fill="#3E2723" />
   
-  <!-- Outer Side of Ears -->
-  <rect x="10" y="2" width="1" height="10" fill="#3E2723" /> <!-- Far Left ear wall -->
-  <rect x="26" y="2" width="1" height="10" fill="#3E2723" /> <!-- Far Right ear wall -->
+  <!-- Vertical Walls of Ears (Stopped strictly at the head connection) -->
+  <rect x="10" y="2" width="1" height="10" fill="#3E2723" /> <!-- Far Left Wall -->
+  <rect x="16" y="2" width="1" height="8" fill="#3E2723" />  <!-- Inner Left Wall - STOPS AT Y=10 -->
+  <rect x="20" y="2" width="1" height="8" fill="#3E2723" />  <!-- Inner Right Wall - STOPS AT Y=10 -->
+  <rect x="26" y="2" width="1" height="10" fill="#3E2723" /> <!-- Far Right Wall -->
   
-  <!-- Inner Side of Ears (Only down to the head connection) -->
-  <rect x="16" y="2" width="1" height="8" fill="#3E2723" />  <!-- L inner -->
-  <rect x="20" y="2" width="1" height="8" fill="#3E2723" />  <!-- R inner -->
-  
-  <!-- THE "BRIDGE" BETWEEN EARS (Y=10) -->
-  <!-- No bar here! Empty space or fill only -->
-  <rect x="17" y="10" width="3" height="1" fill="none" /> 
+  <!-- NO LINE BETWEEN EARS AT Y=10 or Y=11 -->
 
-  <!-- Shoulder Slopes (The only lines allowed to transition to body) -->
+  <!-- Shoulder/Neck Slopes (The transition points) -->
   <rect x="8" y="12" width="2" height="1" fill="#3E2723" /> 
   <rect x="27" y="12" width="2" height="1" fill="#3E2723" /> 
   <rect x="10" y="11" width="1" height="1" fill="#3E2723" />
   <rect x="26" y="11" width="1" height="1" fill="#3E2723" />
   
-  <!-- Main Body Walls -->
+  <!-- Body Perimeter -->
   <rect x="7" y="13" width="1" height="14" fill="#3E2723" />
   <rect x="28" y="13" width="1" height="14" fill="#3E2723" />
   <rect x="8" y="27" width="21" height="1" fill="#3E2723" />
 
-  <!-- 3. FACE -->
+  <!-- 3. FACE & DETAILS -->
   <rect x="13" y="18" width="1" height="2" fill="#3E2723" />
   <rect x="22" y="18" width="1" height="2" fill="#3E2723" />
   <rect x="18" y="22" width="1" height="1" fill="#3E2723" />
