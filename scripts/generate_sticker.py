@@ -1,80 +1,70 @@
 import os
 
 def generate_ppm():
-    # 畫布尺寸 370x320
     width, height = 370, 320
     header = f"P3\n{width} {height}\n255\n"
     
-    # 使用更高解析度的網格 (185x160)，每格 2px，讓線條更細緻
     grid_w, grid_h = 185, 160
     bg = "255 255 255"
     white = "255 255 255"
     black = "0 0 0"
     pink = "255 180 200"
-    shadow = "230 230 230"
+    shadow = "220 220 220"
 
     data = [[bg for _ in range(grid_w)] for _ in range(grid_h)]
     
-    # 兔子的精細座標 (中心點)
-    cx, cy = 92, 80
-    
+    cx, cy = 92, 100 # 下移一點給耳朵空間
+
     def draw_rect(x, y, w, h, color):
         for i in range(x, x+w):
             for j in range(y, y+h):
                 if 0 <= i < grid_w and 0 <= j < grid_h:
                     data[j][i] = color
 
-    # 1. 身體陰影 (讓兔子有立體感)
-    draw_rect(cx-45, cy+5, 90, 35, shadow)
-    # 2. 身體主體
-    draw_rect(cx-48, cy, 96, 35, white)
-    # 3. 身體描邊 (精細黑色 1格寬)
-    # 上下邊
-    for x in range(cx-48, cx+48):
-        data[cy-1][x] = black
-        data[cy+35][x] = black
-    # 左右邊
-    for y in range(cy, cy+35):
-        data[y][cx-49] = black
-        data[y][cx+48] = black
+    def draw_outline(x, y, w, h):
+        for i in range(x, x+w):
+            if 0 <= i < grid_w:
+                if 0 <= y < grid_h: data[y][i] = black
+                if 0 <= y+h-1 < grid_h: data[y+h-1][i] = black
+        for j in range(y, y+h):
+            if 0 <= j < grid_h:
+                if 0 <= x < grid_w: data[j][x] = black
+                if 0 <= x+w-1 < grid_w: data[j][x+w-1] = black
 
-    # 4. 頭部 (圓潤一點)
-    draw_rect(cx+20, cy-15, 40, 40, white)
-    # 頭部描邊
-    for x in range(cx+20, cx+60):
-        data[cy-16][x] = black
-        data[cy+25][x] = black
-    for y in range(cy-15, cy+25):
-        data[y][cx+19] = black
-        data[y][cx+60] = black
-
-    # 5. 垂耳 (左)
-    draw_rect(cx+10, cy-5, 12, 35, white)
-    for y in range(cy-5, cy+30):
-        data[y][cx+9] = black
-        data[y][cx+22] = black
-    for x in range(cx+10, cx+22):
-        data[cy-6][x] = black
-        data[cy+30][x] = black
-
-    # 6. 表情 (更細緻的瞇瞇眼)
-    data[cy+5][cx+40] = black
-    data[cy+5][cx+41] = black
-    data[cy+5][cx+42] = black
-    data[cy+5][cx+50] = black
-    data[cy+5][cx+51] = black
-    data[cy+5][cx+52] = black
+    # 1. 橢圓形身體 (攤平感)
+    draw_rect(cx-50, cy, 100, 30, white)
+    draw_outline(cx-50, cy, 100, 30)
     
-    # 小鼻子
-    data[cy+12][cx+46] = pink
+    # 2. 圓圓的頭 (連在身體右側)
+    draw_rect(cx+30, cy-15, 35, 35, white)
+    draw_outline(cx+30, cy-15, 35, 35)
     
-    # 7. 短尾巴
-    draw_rect(cx-55, cy+15, 10, 10, white)
-    for x in range(cx-55, cx-45):
-        data[cy+14][x] = black
-        data[cy+25][x] = black
-    for y in range(cy+15, cy+25):
-        data[y][cx-56] = black
+    # 3. 兔子的核心特徵：長耳朵 (一對，垂下來)
+    # 耳朵1 (在頭後方)
+    draw_rect(cx+45, cy+5, 10, 40, white)
+    draw_outline(cx+45, cy+5, 10, 40)
+    # 耳朵2 (在頭前方，遮住一點臉)
+    draw_rect(cx+35, cy+10, 10, 45, white)
+    draw_outline(cx+35, cy+10, 10, 45)
+
+    # 4. 懶散的五官
+    # 瞇瞇眼 (一條線)
+    draw_rect(cx+50, cy+5, 8, 1, black)
+    # 小鼻子 (粉紅色 V 字感)
+    data[cy+12][cx+58] = pink
+    data[cy+13][cx+58] = pink
+    
+    # 5. 縮起來的小手和小腳 (兔子的特徵)
+    # 前肢
+    draw_rect(cx+10, cy+25, 10, 8, white)
+    draw_outline(cx+10, cy+25, 10, 8)
+    # 後肢 (縮在屁股後面)
+    draw_rect(cx-55, cy+20, 12, 10, white)
+    draw_outline(cx-55, cy+20, 12, 10)
+    
+    # 6. 圓尾巴 (重要特徵)
+    draw_rect(cx-62, cy+5, 12, 12, white)
+    draw_outline(cx-62, cy+5, 12, 12)
 
     # 輸出 PPM
     with open('sticker-project/output/lazy-bunny-1.ppm', 'w') as f:
@@ -89,4 +79,4 @@ def generate_ppm():
 
 if __name__ == "__main__":
     generate_ppm()
-    print("Sophisticated Pixel Bunny generated.")
+    print("Real-look Lazy Bunny generated.")
