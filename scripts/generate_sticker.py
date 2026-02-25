@@ -1,71 +1,92 @@
 import os
 
 def generate_ppm():
-    # LINE Sticker standard size: 370 x 320
+    # 畫布尺寸 370x320
     width, height = 370, 320
     header = f"P3\n{width} {height}\n255\n"
     
-    # 37x32 grid (10px per cell)
-    grid_w, grid_h = 37, 32
-    
-    # Colors
-    bg = "255 255 255"      # White background (for preview)
-    bunny = "255 255 255"   # White fur
-    outline = "0 0 0"       # Black outline (Bold)
-    eye = "0 0 0"
-    nose = "255 192 203"
-    ear_inner = "255 235 235"
+    # 使用更高解析度的網格 (185x160)，每格 2px，讓線條更細緻
+    grid_w, grid_h = 185, 160
+    bg = "255 255 255"
+    white = "255 255 255"
+    black = "0 0 0"
+    pink = "255 180 200"
+    shadow = "230 230 230"
 
     data = [[bg for _ in range(grid_w)] for _ in range(grid_h)]
     
-    off_x, off_y = 6, 10
+    # 兔子的精細座標 (中心點)
+    cx, cy = 92, 80
     
-    # 1. Draw Body Fill
-    for x in range(3, 23):
-        for y in range(5, 13):
-            data[off_y + y][off_x + x] = bunny
+    def draw_rect(x, y, w, h, color):
+        for i in range(x, x+w):
+            for j in range(y, y+h):
+                if 0 <= i < grid_w and 0 <= j < grid_h:
+                    data[j][i] = color
 
-    # 2. Draw Ears Fill (Droopy)
-    for x in range(0, 5):
-        for y in range(5, 11):
-            data[off_y + y][off_x + x] = bunny
-            
-    # 3. Draw BOLD Black Outlines
-    # Body Horizontal
-    for x in range(3, 23):
-        data[off_y + 4][off_x + x] = outline
-        data[off_y + 13][off_x + x] = outline
-    # Body Vertical
-    for y in range(5, 13):
-        data[off_y + y][off_x + 23] = outline
-    
-    # Ears Outlines
-    for x in range(0, 4):
-        data[off_y + 4][off_x + x] = outline
-        data[off_y + 11][off_x + x] = outline
-    for y in range(5, 11):
-        data[off_y + y][off_x - 1] = outline
-        
-    # Nose
-    data[off_y + 10][off_x + 18] = nose
-    
-    # Eyes (Lazy/Sleeping)
-    data[off_y + 8][off_x + 15] = eye
-    data[off_y + 8][off_x + 16] = eye
-    data[off_y + 8][off_x + 19] = eye
-    data[off_y + 8][off_x + 20] = eye
+    # 1. 身體陰影 (讓兔子有立體感)
+    draw_rect(cx-45, cy+5, 90, 35, shadow)
+    # 2. 身體主體
+    draw_rect(cx-48, cy, 96, 35, white)
+    # 3. 身體描邊 (精細黑色 1格寬)
+    # 上下邊
+    for x in range(cx-48, cx+48):
+        data[cy-1][x] = black
+        data[cy+35][x] = black
+    # 左右邊
+    for y in range(cy, cy+35):
+        data[y][cx-49] = black
+        data[y][cx+48] = black
 
-    # 4. Scale up to 370x320
+    # 4. 頭部 (圓潤一點)
+    draw_rect(cx+20, cy-15, 40, 40, white)
+    # 頭部描邊
+    for x in range(cx+20, cx+60):
+        data[cy-16][x] = black
+        data[cy+25][x] = black
+    for y in range(cy-15, cy+25):
+        data[y][cx+19] = black
+        data[y][cx+60] = black
+
+    # 5. 垂耳 (左)
+    draw_rect(cx+10, cy-5, 12, 35, white)
+    for y in range(cy-5, cy+30):
+        data[y][cx+9] = black
+        data[y][cx+22] = black
+    for x in range(cx+10, cx+22):
+        data[cy-6][x] = black
+        data[cy+30][x] = black
+
+    # 6. 表情 (更細緻的瞇瞇眼)
+    data[cy+5][cx+40] = black
+    data[cy+5][cx+41] = black
+    data[cy+5][cx+42] = black
+    data[cy+5][cx+50] = black
+    data[cy+5][cx+51] = black
+    data[cy+5][cx+52] = black
+    
+    # 小鼻子
+    data[cy+12][cx+46] = pink
+    
+    # 7. 短尾巴
+    draw_rect(cx-55, cy+15, 10, 10, white)
+    for x in range(cx-55, cx-45):
+        data[cy+14][x] = black
+        data[cy+25][x] = black
+    for y in range(cy+15, cy+25):
+        data[y][cx-56] = black
+
+    # 輸出 PPM
     with open('sticker-project/output/lazy-bunny-1.ppm', 'w') as f:
         f.write(header)
         for y in range(height):
-            grid_y = y // 10
+            grid_y = y // 2
             row = []
             for x in range(width):
-                grid_x = x // 10
+                grid_x = x // 2
                 row.append(data[grid_y][grid_x])
             f.write(" ".join(row) + "\n")
 
 if __name__ == "__main__":
     generate_ppm()
-    print("Sticker with BOLD OUTLINE generated.")
+    print("Sophisticated Pixel Bunny generated.")
