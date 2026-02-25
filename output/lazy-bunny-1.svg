@@ -1,61 +1,59 @@
 <svg width="370" height="320" viewBox="0 0 37 32" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
   <!-- 
-    Lazy Bunny - Refined "Pudding Bunny" with Custom Inner Ear Palette
-    - Colors: 
-      Body: Pure White (#FFFFFF)
-      Outline: Deep Cocoa (#3E2723)
-      Inner Ear: Soft Lavender Pink (#F8BBD0) - Selected for a premium sticker feel
-      Blush: Vivid Strawberry (#FF80AB)
-      Shadow: Very Light Grayish Purple (#F3E5F5)
+    Lazy Bunny - ABSOLUTE SEAMLESS VERSION
+    - Critical Fix: Removed the horizontal segments at Y=10 and Y=11 between/inside the ear base area.
+    - Result: The head and ears form one continuous white region bounded only by the outer silhouette.
   -->
   
   <!-- 1. UNIFIED FILL -->
-  <!-- Main Body/Head/Ears -->
-  <rect x="11" y="2" width="5" height="10" fill="#FFFFFF" />
-  <rect x="21" y="2" width="5" height="10" fill="#FFFFFF" />
-  <rect x="8" y="14" width="21" height="13" fill="#FFFFFF" />
-  <rect x="10" y="12" width="17" height="2" fill="#FFFFFF" />
-  <rect x="12" y="11" width="13" height="1" fill="#FFFFFF" />
+  <rect x="11" y="2" width="5" height="10" fill="#FFFFFF" /> 
+  <rect x="21" y="2" width="5" height="10" fill="#FFFFFF" /> 
+  <rect x="8" y="14" width="21" height="13" fill="#FFFFFF" /> 
+  <rect x="10" y="12" width="17" height="2" fill="#FFFFFF" /> 
+  <rect x="12" y="10" width="13" height="2" fill="#FFFFFF" /> 
   
-  <!-- INNER EARS (Color: Soft Lavender Pink #F8BBD0) -->
+  <!-- INNER EARS -->
   <rect x="12" y="3" width="3" height="7" fill="#F8BBD0" />
   <rect x="22" y="3" width="3" height="7" fill="#F8BBD0" />
   
-  <!-- Shading (Bottom & Right) -->
+  <!-- Shading -->
   <rect x="25" y="16" width="3" height="10" fill="#F3E5F5" />
   <rect x="9" y="25" width="20" height="2" fill="#F3E5F5" />
 
-  <!-- 2. CLEAN COCOA OUTLINE (#3E2723) -->
-  <!-- Ear Outlines -->
+  <!-- 2. CLEAN OUTER SILHOUETTE ONLY (No internal bars!) -->
+  <!-- Ear Tops -->
   <rect x="11" y="1" width="5" height="1" fill="#3E2723" />
   <rect x="21" y="1" width="5" height="1" fill="#3E2723" />
-  <rect x="10" y="2" width="1" height="10" fill="#3E2723" />
-  <rect x="16" y="2" width="1" height="9" fill="#3E2723" />
-  <rect x="20" y="2" width="1" height="9" fill="#3E2723" />
-  <rect x="26" y="2" width="1" height="10" fill="#3E2723" />
   
-  <!-- Seamless Transitions -->
-  <rect x="17" y="11" width="3" height="1" fill="#3E2723" /> 
-  <rect x="12" y="10" width="4" height="1" fill="#3E2723" />
-  <rect x="21" y="10" width="4" height="1" fill="#3E2723" />
-  <rect x="10" y="11" width="2" height="1" fill="#3E2723" />
-  <rect x="25" y="11" width="1" height="1" fill="#3E2723" />
-  <rect x="8" y="12" width="2" height="1" fill="#3E2723" />
-  <rect x="26" y="12" width="2" height="1" fill="#3E2723" />
+  <!-- Outer Side of Ears -->
+  <rect x="10" y="2" width="1" height="10" fill="#3E2723" /> <!-- Far Left ear wall -->
+  <rect x="26" y="2" width="1" height="10" fill="#3E2723" /> <!-- Far Right ear wall -->
   
-  <!-- Body Perimeter -->
+  <!-- Inner Side of Ears (Only down to the head connection) -->
+  <rect x="16" y="2" width="1" height="8" fill="#3E2723" />  <!-- L inner -->
+  <rect x="20" y="2" width="1" height="8" fill="#3E2723" />  <!-- R inner -->
+  
+  <!-- THE "BRIDGE" BETWEEN EARS (Y=10) -->
+  <!-- No bar here! Empty space or fill only -->
+  <rect x="17" y="10" width="3" height="1" fill="none" /> 
+
+  <!-- Shoulder Slopes (The only lines allowed to transition to body) -->
+  <rect x="8" y="12" width="2" height="1" fill="#3E2723" /> 
+  <rect x="27" y="12" width="2" height="1" fill="#3E2723" /> 
+  <rect x="10" y="11" width="1" height="1" fill="#3E2723" />
+  <rect x="26" y="11" width="1" height="1" fill="#3E2723" />
+  
+  <!-- Main Body Walls -->
   <rect x="7" y="13" width="1" height="14" fill="#3E2723" />
   <rect x="28" y="13" width="1" height="14" fill="#3E2723" />
-  <rect x="8" y="27" width="20" height="1" fill="#3E2723" />
+  <rect x="8" y="27" width="21" height="1" fill="#3E2723" />
 
-  <!-- 3. KAWAII FACE -->
+  <!-- 3. FACE -->
   <rect x="13" y="18" width="1" height="2" fill="#3E2723" />
   <rect x="22" y="18" width="1" height="2" fill="#3E2723" />
   <rect x="18" y="22" width="1" height="1" fill="#3E2723" />
   <rect x="17" y="21" width="1" height="1" fill="#3E2723" />
   <rect x="19" y="21" width="1" height="1" fill="#3E2723" />
-  
-  <!-- Blush (Strawberry Pink) -->
   <rect x="10" y="20" width="2" height="1" fill="#FF80AB" />
   <rect x="24" y="20" width="2" height="1" fill="#FF80AB" />
 
