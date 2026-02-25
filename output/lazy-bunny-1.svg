@@ -1,59 +1,64 @@
 <svg width="370" height="320" viewBox="0 0 37 32" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
   <!-- 
-    Lazy Bunny - Absolute Symmetrical & Seamless Version
-    - Final Cleanup: Removed ALL horizontal lines between ears and head.
-    - Unified Outline: One single outer stroke for the combined head/ear shape.
-    - Colors: Cream body, Cocoa outline (#3E2723), Pink blush.
+    Lazy Bunny - Kawaii "Bunny with Inner Ears" Edition
+    - Structure: Symmetrical, Seamless ears-to-head transition.
+    - Feature: Added inner ear segments with soft pink coloring.
+    - Colors: Cream body (#FFFFFF), Cocoa outline (#3E2723), Pink blush & inner ears.
   -->
   
-  <!-- 1. UNIFIED FILL (One single white blob) -->
-  <!-- Ear Fills -->
-  <rect x="11" y="2" width="5" height="10" fill="#FFFFFF" />
-  <rect x="21" y="2" width="5" height="10" fill="#FFFFFF" />
-  <!-- Head/Body Fills (Ensuring overlap so no gaps) -->
-  <rect x="10" y="10" width="17" height="4" fill="#FFFFFF" />
-  <rect x="8" y="14" width="21" height="13" fill="#FFFFFF" />
-  <rect x="10" y="12" width="17" height="2" fill="#FFFFFF" />
+  <!-- 1. UNIFIED FILL -->
+  <!-- Main Body/Head/Ears Fill -->
+  <rect x="11" y="2" width="5" height="10" fill="#FFFFFF" /> <!-- Left Ear Fill -->
+  <rect x="21" y="2" width="5" height="10" fill="#FFFFFF" /> <!-- Right Ear Fill -->
+  <rect x="8" y="14" width="21" height="13" fill="#FFFFFF" /> <!-- Body Fill -->
+  <rect x="10" y="12" width="17" height="2" fill="#FFFFFF" /> <!-- Shoulder Fill -->
+  <rect x="12" y="11" width="13" height="1" fill="#FFFFFF" /> <!-- Head Top Fill -->
   
-  <!-- Shading -->
+  <!-- INNER EARS (Soft Pastel Pink #FFD1DC) -->
+  <rect x="12" y="4" width="3" height="6" fill="#FFD1DC" />
+  <rect x="22" y="4" width="3" height="6" fill="#FFD1DC" />
+  
+  <!-- Shading (Bottom & Right) -->
   <rect x="26" y="16" width="3" height="10" fill="#F0E5F0" />
   <rect x="9" y="25" width="20" height="2" fill="#F0E5F0" />
 
-  <!-- 2. CLEAN OUTER OUTLINE (No internal segments) -->
-  <!-- Ear Tops & Outside Vertical -->
-  <rect x="11" y="1" width="5" height="1" fill="#3E2723" /> <!-- Top L -->
-  <rect x="10" y="2" width="1" height="10" fill="#3E2723" /> <!-- Outer L -->
-  <rect x="16" y="2" width="1" height="8" fill="#3E2723" />  <!-- Inner L -->
+  <!-- 2. CLEAN OUTER OUTLINE (No internal base lines) -->
+  <!-- Ear Tops -->
+  <rect x="11" y="1" width="5" height="1" fill="#3E2723" />
+  <rect x="21" y="1" width="5" height="1" fill="#3E2723" />
   
-  <rect x="21" y="1" width="5" height="1" fill="#3E2723" /> <!-- Top R -->
-  <rect x="20" y="2" width="1" height="8" fill="#3E2723" />  <!-- Inner R -->
+  <!-- Sides of Ears -->
+  <rect x="10" y="2" width="1" height="10" fill="#3E2723" /> <!-- Outer L -->
+  <rect x="16" y="2" width="1" height="9" fill="#3E2723" />  <!-- Inner L -->
+  <rect x="20" y="2" width="1" height="9" fill="#3E2723" />  <!-- Inner R -->
   <rect x="26" y="2" width="1" height="10" fill="#3E2723" /> <!-- Outer R -->
   
-  <!-- THE GAP BETWEEN EARS (Y=10) -->
-  <rect x="17" y="10" width="3" height="1" fill="#3E2723" /> 
+  <!-- Gap Between Ears -->
+  <rect x="17" y="11" width="3" height="1" fill="#3E2723" /> 
 
-  <!-- THE SHOULDERS (Connecting ears to lower body) -->
-  <rect x="8" y="12" width="2" height="1" fill="#3E2723" /> <!-- Far Left -->
-  <rect x="10" y="11" width="1" height="1" fill="#3E2723" /> <!-- Corner L -->
+  <!-- Shoulder/Body Transitions -->
+  <rect x="12" y="10" width="4" height="1" fill="#3E2723" />
+  <rect x="21" y="10" width="4" height="1" fill="#3E2723" />
+  <rect x="10" y="11" width="2" height="1" fill="#3E2723" />
+  <rect x="25" y="11" width="1" height="1" fill="#3E2723" />
+  <rect x="8" y="12" width="2" height="1" fill="#3E2723" />
+  <rect x="26" y="12" width="2" height="1" fill="#3E2723" />
   
-  <rect x="26" y="11" width="1" height="1" fill="#3E2723" /> <!-- Corner R -->
-  <rect x="27" y="12" width="2" height="1" fill="#3E2723" /> <!-- Far Right -->
-  
-  <!-- Main Body Perimeter -->
-  <rect x="7" y="13" width="1" height="14" fill="#3E2723" /> <!-- Wall L -->
-  <rect x="29" y="13" width="1" height="14" fill="#3E2723" /> <!-- Wall R -->
-  <rect x="8" y="27" width="21" height="1" fill="#3E2723" /> <!-- Base -->
+  <!-- Body Perimeter -->
+  <rect x="7" y="13" width="1" height="14" fill="#3E2723" />
+  <rect x="28" y="13" width="1" height="14" fill="#3E2723" />
+  <rect x="8" y="27" width="20" height="1" fill="#3E2723" />
 
   <!-- 3. KAWAII FACE -->
-  <rect x="13" y="18" width="1" height="2" fill="#3E2723" /> <!-- Eye L -->
-  <rect x="23" y="18" width="1" height="2" fill="#3E2723" /> <!-- Eye R -->
-  <rect x="18" y="22" width="1" height="1" fill="#3E2723" /> <!-- Mouth center -->
-  <rect x="17" y="21" width="1" height="1" fill="#3E2723" /> <!-- Mouth side L -->
-  <rect x="19" y="21" width="1" height="1" fill="#3E2723" /> <!-- Mouth side R -->
+  <rect x="13" y="18" width="1" height="2" fill="#3E2723" />
+  <rect x="22" y="18" width="1" height="2" fill="#3E2723" />
+  <rect x="18" y="22" width="1" height="1" fill="#3E2723" />
+  <rect x="17" y="21" width="1" height="1" fill="#3E2723" />
+  <rect x="19" y="21" width="1" height="1" fill="#3E2723" />
   
   <!-- Blush -->
   <rect x="10" y="20" width="2" height="1" fill="#FF80AB" />
-  <rect x="25" y="20" width="2" height="1" fill="#FF80AB" />
+  <rect x="24" y="20" width="2" height="1" fill="#FF80AB" />
 
   <!-- TAIL -->
   <rect x="5" y="21" width="2" height="3" fill="#FFFFFF" />
