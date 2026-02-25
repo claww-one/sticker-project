@@ -1,42 +1,41 @@
 <svg width="370" height="320" viewBox="0 0 37 32" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
   <!-- 
-    Lazy Bunny - Kawaii "Bunny with Inner Ears" Edition V2
-    - Structure: Symmetrical, Seamless ears-to-head transition.
-    - Updated: Inner ear segments matching the reference shape.
-    - Colors: Cream body (#FFFFFF), Cocoa outline (#3E2723), Soft Pink (#FFD1DC).
+    Lazy Bunny - Refined "Pudding Bunny" with Custom Inner Ear Palette
+    - Colors: 
+      Body: Pure White (#FFFFFF)
+      Outline: Deep Cocoa (#3E2723)
+      Inner Ear: Soft Lavender Pink (#F8BBD0) - Selected for a premium sticker feel
+      Blush: Vivid Strawberry (#FF80AB)
+      Shadow: Very Light Grayish Purple (#F3E5F5)
   -->
   
   <!-- 1. UNIFIED FILL -->
-  <!-- Main Body/Head/Ears Fill -->
-  <rect x="11" y="2" width="5" height="10" fill="#FFFFFF" /> <!-- Left Ear Fill -->
-  <rect x="21" y="2" width="5" height="10" fill="#FFFFFF" /> <!-- Right Ear Fill -->
-  <rect x="8" y="14" width="21" height="13" fill="#FFFFFF" /> <!-- Body Fill -->
-  <rect x="10" y="12" width="17" height="2" fill="#FFFFFF" /> <!-- Shoulder Fill -->
-  <rect x="12" y="11" width="13" height="1" fill="#FFFFFF" /> <!-- Head Top Fill -->
+  <!-- Main Body/Head/Ears -->
+  <rect x="11" y="2" width="5" height="10" fill="#FFFFFF" />
+  <rect x="21" y="2" width="5" height="10" fill="#FFFFFF" />
+  <rect x="8" y="14" width="21" height="13" fill="#FFFFFF" />
+  <rect x="10" y="12" width="17" height="2" fill="#FFFFFF" />
+  <rect x="12" y="11" width="13" height="1" fill="#FFFFFF" />
   
-  <!-- 2. INNER EARS (Updated per reference) -->
-  <rect x="12" y="3" width="3" height="7" fill="#FFD1DC" />
-  <rect x="22" y="3" width="3" height="7" fill="#FFD1DC" />
+  <!-- INNER EARS (Color: Soft Lavender Pink #F8BBD0) -->
+  <rect x="12" y="3" width="3" height="7" fill="#F8BBD0" />
+  <rect x="22" y="3" width="3" height="7" fill="#F8BBD0" />
   
   <!-- Shading (Bottom & Right) -->
-  <rect x="26" y="16" width="3" height="10" fill="#F0E5F0" />
-  <rect x="9" y="25" width="20" height="2" fill="#F0E5F0" />
+  <rect x="25" y="16" width="3" height="10" fill="#F3E5F5" />
+  <rect x="9" y="25" width="20" height="2" fill="#F3E5F5" />
 
-  <!-- 3. CLEAN OUTER OUTLINE (No internal base lines) -->
-  <!-- Ear Tops -->
+  <!-- 2. CLEAN COCOA OUTLINE (#3E2723) -->
+  <!-- Ear Outlines -->
   <rect x="11" y="1" width="5" height="1" fill="#3E2723" />
   <rect x="21" y="1" width="5" height="1" fill="#3E2723" />
+  <rect x="10" y="2" width="1" height="10" fill="#3E2723" />
+  <rect x="16" y="2" width="1" height="9" fill="#3E2723" />
+  <rect x="20" y="2" width="1" height="9" fill="#3E2723" />
+  <rect x="26" y="2" width="1" height="10" fill="#3E2723" />
   
-  <!-- Sides of Ears -->
-  <rect x="10" y="2" width="1" height="10" fill="#3E2723" /> <!-- Outer L -->
-  <rect x="16" y="2" width="1" height="9" fill="#3E2723" />  <!-- Inner L -->
-  <rect x="20" y="2" width="1" height="9" fill="#3E2723" />  <!-- Inner R -->
-  <rect x="26" y="2" width="1" height="10" fill="#3E2723" /> <!-- Outer R -->
-  
-  <!-- Gap Between Ears -->
+  <!-- Seamless Transitions -->
   <rect x="17" y="11" width="3" height="1" fill="#3E2723" /> 
-
-  <!-- Shoulder/Body Transitions -->
   <rect x="12" y="10" width="4" height="1" fill="#3E2723" />
   <rect x="21" y="10" width="4" height="1" fill="#3E2723" />
   <rect x="10" y="11" width="2" height="1" fill="#3E2723" />
@@ -49,14 +48,14 @@
   <rect x="28" y="13" width="1" height="14" fill="#3E2723" />
   <rect x="8" y="27" width="20" height="1" fill="#3E2723" />
 
-  <!-- 4. KAWAII FACE -->
+  <!-- 3. KAWAII FACE -->
   <rect x="13" y="18" width="1" height="2" fill="#3E2723" />
   <rect x="22" y="18" width="1" height="2" fill="#3E2723" />
   <rect x="18" y="22" width="1" height="1" fill="#3E2723" />
   <rect x="17" y="21" width="1" height="1" fill="#3E2723" />
   <rect x="19" y="21" width="1" height="1" fill="#3E2723" />
   
-  <!-- Blush -->
+  <!-- Blush (Strawberry Pink) -->
   <rect x="10" y="20" width="2" height="1" fill="#FF80AB" />
   <rect x="24" y="20" width="2" height="1" fill="#FF80AB" />
 
